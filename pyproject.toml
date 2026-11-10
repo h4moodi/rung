@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rung"
+version = "0.1.0"
+description = "Stage-aware repository auditing against the Klotins et al. start-up progression model"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Mohammed Shazad Hassan" }]
+dependencies = [
+  "pydantic>=2.7,<3",
+  "GitPython>=3.1.43,<4",
+  "PyYAML>=6.0.1,<7",
+  "typer>=0.12,<1",
+  "rich>=13.7,<16",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.30,<1"]
+dev = [
+  "pytest>=8.2,<10",
+  "httpx>=0.27,<1",
+  "ruff>=0.6",
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+]
+
+[project.scripts]
+rung = "rung.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rung"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101", "S603", "S607"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "B011"]
