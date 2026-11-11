@@ -1,0 +1,8 @@
+# rung's configuration for auditing itself (see docs/configuration.md).
+[rung]
+fail_on = "high"
+stage_threshold = 0.7
+
+[paths]
+# Fixture trees are deliberately bad repositories; the sample report is generated output.
+ignore = ["tests/fixtures/**", "web/public/sample-report.json"]

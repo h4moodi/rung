@@ -36,6 +36,7 @@ packages = ["src/rung"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+norecursedirs = ["fixtures", "node_modules", ".venv"]
 pythonpath = ["."]
 addopts = "-q"
 

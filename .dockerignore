@@ -1,0 +1,26 @@
+# The API image needs only pyproject.toml, README.md and src/.
+.git
+.gitignore
+.github
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+dist
+build
+*.egg-info
+tests
+docs
+web
+node_modules
+.next
+*.sqlite3
+*.db
+.rung-cache
+.env
+.env.*
+Dockerfile
+docker-compose.yml
+.dockerignore
