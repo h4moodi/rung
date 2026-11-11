@@ -1,0 +1,1402 @@
+{
+  "tool": {
+    "name": "rung",
+    "version": "0.1.0",
+    "schema_version": "1.0"
+  },
+  "repo": {
+    "name": "rung",
+    "source": ".",
+    "is_git": true,
+    "head_commit": "4a962b155715df23f325471baaf6411ecac7d5f5",
+    "head_date": "2026-11-11T12:46:06+03:00",
+    "branch": "claude/rung-v1",
+    "shallow": true
+  },
+  "classification": {
+    "stage": "maturity",
+    "next_stage": null,
+    "threshold": 0.7,
+    "progress": [
+      {
+        "stage": "inception",
+        "fulfillment": 1.0,
+        "passed": 9,
+        "total": 9,
+        "met": true
+      },
+      {
+        "stage": "stabilization",
+        "fulfillment": 1.0,
+        "passed": 14,
+        "total": 14,
+        "met": true
+      },
+      {
+        "stage": "growth",
+        "fulfillment": 0.871,
+        "passed": 14,
+        "total": 16,
+        "met": true
+      },
+      {
+        "stage": "maturity",
+        "fulfillment": 0.7368,
+        "passed": 7,
+        "total": 10,
+        "met": true
+      }
+    ],
+    "rationale": "Classified as maturity: every stage up to it meets the 70% threshold (inception 100%, stabilization 100%, growth 87%, maturity 74%)."
+  },
+  "overall_score": 92.5,
+  "dimensions": [
+    {
+      "dimension": "commit_history",
+      "score": 100.0,
+      "passed": 0,
+      "failed": 0,
+      "not_applicable": 10
+    },
+    {
+      "dimension": "containerization",
+      "score": 100.0,
+      "passed": 10,
+      "failed": 0,
+      "not_applicable": 0
+    },
+    {
+      "dimension": "testing",
+      "score": 75.0,
+      "passed": 5,
+      "failed": 2,
+      "not_applicable": 1
+    },
+    {
+      "dimension": "ci_cd",
+      "score": 91.3,
+      "passed": 8,
+      "failed": 1,
+      "not_applicable": 0
+    },
+    {
+      "dimension": "documentation",
+      "score": 95.5,
+      "passed": 10,
+      "failed": 1,
+      "not_applicable": 0
+    },
+    {
+      "dimension": "security",
+      "score": 94.3,
+      "passed": 11,
+      "failed": 1,
+      "not_applicable": 1
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "CIC001",
+      "title": "CI pipeline defined",
+      "dimension": "ci_cd",
+      "stage": "stabilization",
+      "weight": 2.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "1 CI configuration file(s) found (GitHub Actions)",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC002",
+      "title": "CI runs automatically on push or pull request",
+      "dimension": "ci_cd",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": ".github/workflows/ci.yml runs on pull_request, push",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC003",
+      "title": "CI runs the tests",
+      "dimension": "ci_cd",
+      "stage": "stabilization",
+      "weight": 1.5,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "CI runs tests: `pytest` at .github/workflows/ci.yml:40",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": 40,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC004",
+      "title": "CI runs lint or static analysis",
+      "dimension": "ci_cd",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "CI runs static analysis: `ruff` at .github/workflows/ci.yml:37",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": 37,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC005",
+      "title": "Delivery is automated",
+      "dimension": "ci_cd",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "failed",
+      "summary": "No build/publish/deploy/release step found in 1 CI file(s)",
+      "evidence": [],
+      "finding_count": 1,
+      "error": null
+    },
+    {
+      "rule_id": "CIC006",
+      "title": "Third-party actions pinned to a commit SHA",
+      "dimension": "ci_cd",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "4 action reference(s): 4 SHA/digest-pinned, 0 first-party on a version tag (allowed)",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC007",
+      "title": "Workflow token permissions are least-privilege",
+      "dimension": "ci_cd",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "All 1 workflow(s) restrict GITHUB_TOKEN permissions",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC008",
+      "title": "No script injection in workflow run steps",
+      "dimension": "ci_cd",
+      "stage": "stabilization",
+      "weight": 1.5,
+      "severity": "high",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "No untrusted event fields interpolated in 12 run-script line(s) across 1 workflow(s)",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CIC009",
+      "title": "pull_request_target does not check out untrusted code",
+      "dimension": "ci_cd",
+      "stage": "stabilization",
+      "weight": 1.5,
+      "severity": "high",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "None of the 1 workflow(s) uses pull_request_target",
+      "evidence": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM001",
+      "title": "Version control in real use",
+      "dimension": "commit_history",
+      "stage": "inception",
+      "weight": 2.0,
+      "severity": "high",
+      "confidence": "high",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM002",
+      "title": "Descriptive commit messages",
+      "dimension": "commit_history",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM003",
+      "title": "Sustained development activity",
+      "dimension": "commit_history",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM004",
+      "title": "Consistent commit convention",
+      "dimension": "commit_history",
+      "stage": "growth",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM005",
+      "title": "Multiple contributors",
+      "dimension": "commit_history",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM006",
+      "title": "Review-based workflow",
+      "dimension": "commit_history",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM007",
+      "title": "Releases are tagged",
+      "dimension": "commit_history",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM008",
+      "title": "No single-author dependency (bus factor)",
+      "dimension": "commit_history",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM009",
+      "title": "Established release history",
+      "dimension": "commit_history",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "COM010",
+      "title": "No code-dump commits",
+      "dimension": "commit_history",
+      "stage": "stabilization",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "Shallow clone: history is truncated, so it cannot be judged",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR001",
+      "title": "Container build definition present",
+      "dimension": "containerization",
+      "stage": "stabilization",
+      "weight": 2.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "2 container build file(s) found, e.g. Dockerfile",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR002",
+      "title": ".dockerignore present",
+      "dimension": "containerization",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": ".dockerignore found at the repository root",
+      "evidence": [
+        {
+          "path": ".dockerignore",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR003",
+      "title": "Base images pinned to a version",
+      "dimension": "containerization",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "All 5 external base image reference(s) in 2 Dockerfile(s) are pinned or templated",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR004",
+      "title": "Container does not run as root",
+      "dimension": "containerization",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "2 Dockerfile(s) judged, none runs its final stage as root",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR005",
+      "title": "Orchestration manifest present",
+      "dimension": "containerization",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "1 orchestration file(s) found, e.g. docker-compose.yml",
+      "evidence": [
+        {
+          "path": "docker-compose.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR006",
+      "title": "Compose files avoid dangerous settings",
+      "dimension": "containerization",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "1 compose file(s) checked, no dangerous settings (cap 20)",
+      "evidence": [
+        {
+          "path": "docker-compose.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR007",
+      "title": "No unverified remote code in image builds",
+      "dimension": "containerization",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "No pipe-to-shell or unverified remote ADD in 2 Dockerfile(s)",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR008",
+      "title": "Multi-stage build",
+      "dimension": "containerization",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "web/Dockerfile has 3 build stages",
+      "evidence": [
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR009",
+      "title": "Container health is declared",
+      "dimension": "containerization",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "HEALTHCHECK declared at Dockerfile:34",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": 34,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "CTR010",
+      "title": "No secrets baked into images",
+      "dimension": "containerization",
+      "stage": "inception",
+      "weight": 2.0,
+      "severity": "high",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "No hard-coded secret-looking ENV/ARG values in 2 Dockerfile(s)",
+      "evidence": [
+        {
+          "path": "Dockerfile",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/Dockerfile",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC001",
+      "title": "README present",
+      "dimension": "documentation",
+      "stage": "inception",
+      "weight": 2.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "README found at README.md",
+      "evidence": [
+        {
+          "path": "README.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC002",
+      "title": ".gitignore present",
+      "dimension": "documentation",
+      "stage": "inception",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": ".gitignore found at the repository root",
+      "evidence": [
+        {
+          "path": ".gitignore",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC003",
+      "title": "README explains how to set up and use the project",
+      "dimension": "documentation",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "README.md has 951 word(s), a setup/usage heading and a code block",
+      "evidence": [
+        {
+          "path": "README.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC004",
+      "title": "License present",
+      "dimension": "documentation",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "License found at LICENSE",
+      "evidence": [
+        {
+          "path": "LICENSE",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC005",
+      "title": "Contributing guide",
+      "dimension": "documentation",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Contributing guide found at CONTRIBUTING.md",
+      "evidence": [
+        {
+          "path": "CONTRIBUTING.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC006",
+      "title": "Changelog",
+      "dimension": "documentation",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Changelog found at CHANGELOG.md",
+      "evidence": [
+        {
+          "path": "CHANGELOG.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC007",
+      "title": "Project documentation or roadmap",
+      "dimension": "documentation",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "13 documentation page(s) under docs/",
+      "evidence": [
+        {
+          "path": "docs/api.md",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "docs/architecture.md",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "docs/configuration.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC008",
+      "title": "CODEOWNERS",
+      "dimension": "documentation",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "CODEOWNERS found at .github/CODEOWNERS",
+      "evidence": [
+        {
+          "path": ".github/CODEOWNERS",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC009",
+      "title": "Issue or pull request templates",
+      "dimension": "documentation",
+      "stage": "growth",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Issue/PR template found at .github/PULL_REQUEST_TEMPLATE.md",
+      "evidence": [
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC010",
+      "title": "Architecture documentation",
+      "dimension": "documentation",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Architecture documentation found at docs/architecture.md",
+      "evidence": [
+        {
+          "path": "docs/architecture.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "DOC011",
+      "title": "Code of conduct",
+      "dimension": "documentation",
+      "stage": "maturity",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "failed",
+      "summary": "No CODE_OF_CONDUCT in the root, docs/ or .github/",
+      "evidence": [],
+      "finding_count": 1,
+      "error": null
+    },
+    {
+      "rule_id": "SEC001",
+      "title": "No provider credentials in the working tree",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 3.0,
+      "severity": "critical",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "No provider-format credentials in 106 text files scanned",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC002",
+      "title": "No generic hard-coded secrets",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "low",
+      "outcome": "passed",
+      "summary": "No hard-coded secret assignments in 106 text files",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC003",
+      "title": "No private keys or keystores committed",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 3.0,
+      "severity": "critical",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "No private key or keystore files are tracked",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC004",
+      "title": "No environment files committed",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 2.0,
+      "severity": "high",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "No populated .env files are tracked",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC005",
+      "title": "No credentials left in git history",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 2.0,
+      "severity": "high",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "No removed credentials found in 14576 added line(s) of history; shallow clone, older history not visible",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC006",
+      "title": ".gitignore covers environment files",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "No sign of .env / dotenv usage in this repository",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC007",
+      "title": "Dependencies declared in a manifest",
+      "dimension": "security",
+      "stage": "inception",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "2 dependency manifest(s) found",
+      "evidence": [
+        {
+          "path": "pyproject.toml",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "web/package.json",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC008",
+      "title": "Lockfile committed for each dependency manifest",
+      "dimension": "security",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "All 1 manifest(s) are locked",
+      "evidence": [
+        {
+          "path": "web/package-lock.json",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC009",
+      "title": "No unpinned or wildcard dependency versions",
+      "dimension": "security",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "All 12 declared dependencies have a version constraint",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC011",
+      "title": "Dependency update automation configured",
+      "dimension": "security",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "Dependency update automation configured in .github/dependabot.yml",
+      "evidence": [
+        {
+          "path": ".github/dependabot.yml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC012",
+      "title": "Security policy present",
+      "dimension": "security",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Security policy found at SECURITY.md",
+      "evidence": [
+        {
+          "path": "SECURITY.md",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "SEC013",
+      "title": "Automated security scanning in CI or pre-commit",
+      "dimension": "security",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "failed",
+      "summary": "No security scanner found in 1 CI/pre-commit file(s)",
+      "evidence": [],
+      "finding_count": 1,
+      "error": null
+    },
+    {
+      "rule_id": "SEC014",
+      "title": "No large binary blobs tracked",
+      "dimension": "security",
+      "stage": "stabilization",
+      "weight": 0.5,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "No tracked non-asset binary larger than 5 MB",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST001",
+      "title": "Automated tests exist",
+      "dimension": "testing",
+      "stage": "stabilization",
+      "weight": 2.0,
+      "severity": "medium",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "15 test file(s) found, e.g. tests/probes/test_cicd.py",
+      "evidence": [
+        {
+          "path": "tests/probes/test_cicd.py",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "tests/probes/test_commits.py",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "tests/probes/test_containers.py",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST002",
+      "title": "Test runner configured",
+      "dimension": "testing",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "A test runner is declared in pyproject.toml",
+      "evidence": [
+        {
+          "path": "pyproject.toml",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST003",
+      "title": "Test suite is proportionate to the code",
+      "dimension": "testing",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "medium",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "15 test file(s) for 45 source file(s) (ratio 0.33, minimum 0.15)",
+      "evidence": [
+        {
+          "path": "tests/probes/test_cicd.py",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "tests/probes/test_commits.py",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "tests/probes/test_containers.py",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST004",
+      "title": "Coverage measurement configured",
+      "dimension": "testing",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "failed",
+      "summary": "No coverage configuration found (checked up to 40 manifest and CI files)",
+      "evidence": [],
+      "finding_count": 1,
+      "error": null
+    },
+    {
+      "rule_id": "TST005",
+      "title": "Linter or formatter configured",
+      "dimension": "testing",
+      "stage": "stabilization",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "high",
+      "outcome": "passed",
+      "summary": "Linter/formatter configuration found: web/eslint.config.mjs",
+      "evidence": [
+        {
+          "path": "web/eslint.config.mjs",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST006",
+      "title": "Tests are maintained alongside code",
+      "dimension": "testing",
+      "stage": "growth",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "not_applicable",
+      "summary": "No complete git history (not a git repo, or a shallow clone)",
+      "evidence": [],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST007",
+      "title": "More than one test level",
+      "dimension": "testing",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "passed",
+      "summary": "2 test levels detected: integration, unit",
+      "evidence": [
+        {
+          "path": "tests/probes/test_cicd.py",
+          "start_line": null,
+          "end_line": null
+        },
+        {
+          "path": "tests/test_integration.py",
+          "start_line": null,
+          "end_line": null
+        }
+      ],
+      "finding_count": 0,
+      "error": null
+    },
+    {
+      "rule_id": "TST008",
+      "title": "Static type checking configured",
+      "dimension": "testing",
+      "stage": "maturity",
+      "weight": 1.0,
+      "severity": "low",
+      "confidence": "medium",
+      "outcome": "failed",
+      "summary": "Type checking missing for 1 of 2 judged language(s)",
+      "evidence": [],
+      "finding_count": 1,
+      "error": null
+    }
+  ],
+  "findings": [
+    {
+      "rule_id": "CIC005",
+      "title": "Delivery is automated",
+      "dimension": "ci_cd",
+      "stage": "growth",
+      "severity": "medium",
+      "base_severity": "medium",
+      "confidence": "medium",
+      "message": "No build/publish/deploy/release step found in 1 CI file(s)",
+      "remediation": "Add a workflow that builds and publishes or deploys the product (container image, package or release) from CI, triggered by a tag, a release or a merge to main.",
+      "location": {
+        "path": ".github/workflows/ci.yml",
+        "start_line": null,
+        "end_line": null
+      },
+      "fingerprint": "40163c16333ed59856c1"
+    },
+    {
+      "rule_id": "SEC013",
+      "title": "Automated security scanning in CI or pre-commit",
+      "dimension": "security",
+      "stage": "maturity",
+      "severity": "medium",
+      "base_severity": "medium",
+      "confidence": "medium",
+      "message": "No security scanner found in 1 CI/pre-commit file(s)",
+      "remediation": "Add a scanner to CI or pre-commit, e.g. CodeQL, gitleaks, semgrep or pip-audit.",
+      "location": {
+        "path": ".github/workflows/ci.yml",
+        "start_line": null,
+        "end_line": null
+      },
+      "fingerprint": "99d3333752cece319a58"
+    },
+    {
+      "rule_id": "DOC011",
+      "title": "Code of conduct",
+      "dimension": "documentation",
+      "stage": "maturity",
+      "severity": "low",
+      "base_severity": "low",
+      "confidence": "high",
+      "message": "No CODE_OF_CONDUCT in the root, docs/ or .github/",
+      "remediation": "Add CODE_OF_CONDUCT.md (the Contributor Covenant is a common starting point) with a contact for reports.",
+      "location": {
+        "path": "CODE_OF_CONDUCT.md",
+        "start_line": null,
+        "end_line": null
+      },
+      "fingerprint": "e89dade65170e15af857"
+    },
+    {
+      "rule_id": "TST004",
+      "title": "Coverage measurement configured",
+      "dimension": "testing",
+      "stage": "growth",
+      "severity": "low",
+      "base_severity": "low",
+      "confidence": "medium",
+      "message": "No coverage configuration found (checked up to 40 manifest and CI files)",
+      "remediation": "Configure coverage (pytest-cov, jest --coverage, jacoco, `go test -cover`, ...) and report it in CI.",
+      "location": {
+        "path": ".coveragerc",
+        "start_line": null,
+        "end_line": null
+      },
+      "fingerprint": "3acc48c3ee21d28b3702"
+    },
+    {
+      "rule_id": "TST008",
+      "title": "Static type checking configured",
+      "dimension": "testing",
+      "stage": "maturity",
+      "severity": "low",
+      "base_severity": "low",
+      "confidence": "medium",
+      "message": "No mypy/pyright configuration for the Python code",
+      "remediation": "Configure mypy or pyright for Python, and enable `\"strict\": true` in tsconfig.json for TypeScript.",
+      "location": {
+        "path": "pyproject.toml",
+        "start_line": null,
+        "end_line": null
+      },
+      "fingerprint": "69b49366205ea5f4ce9c"
+    }
+  ],
+  "checklist": [
+    {
+      "rank": 1,
+      "rule_id": "CIC005",
+      "title": "Delivery is automated",
+      "dimension": "ci_cd",
+      "stage": "growth",
+      "priority": "overdue",
+      "severity": "medium",
+      "remediation": "Add a workflow that builds and publishes or deploys the product (container image, package or release) from CI, triggered by a tag, a release or a merge to main.",
+      "finding_count": 1
+    },
+    {
+      "rank": 2,
+      "rule_id": "SEC013",
+      "title": "Automated security scanning in CI or pre-commit",
+      "dimension": "security",
+      "stage": "maturity",
+      "priority": "overdue",
+      "severity": "medium",
+      "remediation": "Add a scanner to CI or pre-commit, e.g. CodeQL, gitleaks, semgrep or pip-audit.",
+      "finding_count": 1
+    },
+    {
+      "rank": 3,
+      "rule_id": "TST004",
+      "title": "Coverage measurement configured",
+      "dimension": "testing",
+      "stage": "growth",
+      "priority": "overdue",
+      "severity": "low",
+      "remediation": "Configure coverage (pytest-cov, jest --coverage, jacoco, `go test -cover`, ...) and report it in CI.",
+      "finding_count": 1
+    },
+    {
+      "rank": 4,
+      "rule_id": "TST008",
+      "title": "Static type checking configured",
+      "dimension": "testing",
+      "stage": "maturity",
+      "priority": "overdue",
+      "severity": "low",
+      "remediation": "Configure mypy or pyright for Python, and enable `\"strict\": true` in tsconfig.json for TypeScript.",
+      "finding_count": 1
+    },
+    {
+      "rank": 5,
+      "rule_id": "DOC011",
+      "title": "Code of conduct",
+      "dimension": "documentation",
+      "stage": "maturity",
+      "priority": "overdue",
+      "severity": "low",
+      "remediation": "Add CODE_OF_CONDUCT.md (the Contributor Covenant is a common starting point) with a contact for reports.",
+      "finding_count": 1
+    }
+  ],
+  "suppressed": [],
+  "summary": {
+    "counts_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 2,
+      "low": 3,
+      "info": 0
+    },
+    "rules_run": 61,
+    "rules_passed": 44,
+    "rules_failed": 5,
+    "rules_not_applicable": 12,
+    "files_scanned": 108,
+    "commits_analyzed": 4,
+    "suppressed": 0,
+    "duration_ms": 384
+  }
+}
