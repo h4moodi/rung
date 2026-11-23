@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1
 # rung API image: build a wheel, then install it into a slim runtime that has git.
 
-FROM python:3.13-slim AS builder
+FROM python:3.15-slim AS builder
 WORKDIR /build
 RUN pip install --no-cache-dir build==1.2.2
 COPY pyproject.toml README.md ./
 COPY src ./src
 RUN python -m build --wheel --outdir /dist
 
-FROM python:3.13-slim AS runtime
+FROM python:3.15-slim AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     RUNG_DB=/data/rung.sqlite3
