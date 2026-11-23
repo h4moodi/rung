@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1
 # rung dashboard image: Next.js standalone output served by a non-root node process.
 
-FROM node:22-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM node:22-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /app
 # Public, not a secret: the URL the browser uses to reach the rung API. Baked in at build time.
 ARG NEXT_PUBLIC_RUNG_API_URL=http://localhost:8000
@@ -17,7 +17,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-FROM node:22-alpine AS runtime
+FROM node:26-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
